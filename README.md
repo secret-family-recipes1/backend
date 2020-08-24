@@ -1,5 +1,7 @@
 # Database Tables
 
+![Image of Yaktocat](https://puu.sh/Glhdx/abfab614c9.png)
+
 ## users
 
 | id  | firstname (required) | lastname (required) | email (required, unique) | password (required) |
