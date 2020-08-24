@@ -1,22 +1,20 @@
 # Database Tables
 
-![Image of Yaktocat](https://puu.sh/Glhdx/abfab614c9.png)
+![database model](https://puu.sh/Glhdx/abfab614c9.png)
 
-## users
+## users:
 
-| id  | firstname (required) | lastname (required) | email (required, unique) | password (required) |
-| --- | -------------------- | ------------------- | ------------------------ | ------------------- |
-| 1   | firstName            | lastName            | exmaple@example.com      | password            |
-| 2   | firstName            | lastName            | exmaple@example.com      | password            |
-| 3   | firstName            | lastName            | exmaple@example.com      | password            |
+| id  | firstname [required] | lastname [required] | email [required] | password [required] |
+| --- | -------------------- | ------------------- | ---------------- | ------------------- |
+| 1   | tim                  | bogdanov            | tim@bogdanov.com | password            |
 
-## recipes
+## recipes:
 
-| id  | recipeName (required) | source (required)         | user_id |
-| --- | --------------------- | ------------------------- | ------- |
-| 1   | recipe                | allrecipes.com/hashbrowns | 2       |
+| id  | recipeName [required] | user_id [auto-set] |
+| --- | --------------------- | ------------------ |
+| 1   | cookies               | 1                  |
 
-# Enpoints
+# End-points
 
 ## Register:
 
