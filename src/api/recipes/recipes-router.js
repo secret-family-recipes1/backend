@@ -57,4 +57,16 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+router.get('/:id/ingredients', (req, res) => {
+  const recipe_id = req.params.id;
+
+  Recipes.getIngredients(recipe_id)
+    .then((ingredients) => {
+      res.status(200).json(ingredients);
+    })
+    .catch((error) => {
+      res.status(404).json({ message: `cannot get ingredients` });
+    });
+});
+
 module.exports = router;
