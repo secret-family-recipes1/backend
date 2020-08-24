@@ -1,29 +1,35 @@
-# Database Tables
+# /api/users
 
-![database model](https://puu.sh/Glhdx/abfab614c9.png)
+_Schema_
 
-## users:
+```javascript
+id: 1 // auto-generated
+firstname: 'tim' // string, required
+lastname: 'bogdanov' // string required
+email: tim@bogdanov.com // string, required
+password: 'bogdanov' // string required
+```
 
-| id  | firstname [required] | lastname [required] | email [required] | password [required] |
-| --- | -------------------- | ------------------- | ---------------- | ------------------- |
-| 1   | tim                  | bogdanov            | tim@bogdanov.com | password            |
+| Method | URL                 | Desciption               |
+| ------ | ------------------- | ------------------------ |
+| GET    | /api/users/         | fetch all existing users |
+| POST   | /api/users/register | register a new user      |
+| POST   | /api/users/login    | login with existing user |
 
-## recipes:
+---
 
-| id  | recipeName [required] | user_id [auto-set] |
-| --- | --------------------- | ------------------ |
-| 1   | cookies               | 1                  |
+# /api/recipes
 
-# End-points
+_Schema_
 
-## Register:
+```javascript
+id: 1; // auto-generated
+recipeName: 'Cookie'; // string, required
+source: 'Grandma'; // string required
+```
 
-_/api/auth/register_
-
-## Login:
-
-_/api/auth/login_
-
-## Logout:
-
-_Log out functionality should be created on the front-end side by removing the token inside localStorage upon logging out_
+| Method | URL              | Desciption                 |
+| ------ | ---------------- | -------------------------- |
+| GET    | /api/recipes     | fetch all existing recipes |
+| POST   | /api/recipes     | create a new recipe        |
+| POST   | /api/recipes/:id | fetch specified recipe     |
