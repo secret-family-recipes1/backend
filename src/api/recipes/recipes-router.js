@@ -1,6 +1,10 @@
-const router = require('express').Router();
+const router = require('express').Router({ mergeParams: true });
+
+const ingredientsRouter = require('../ingredients/ingredients-router');
 
 const Recipes = require('./recipes-model');
+
+router.use('/:id/ingredients', ingredientsRouter);
 
 router.post('/', (req, res) => {
   const { recipeName, user_id } = req.body;
@@ -54,18 +58,6 @@ router.delete('/:id', (req, res) => {
     })
     .catch((error) => {
       res.status(404).json({ message: `unable to remove recipe` });
-    });
-});
-
-router.get('/:id/ingredients', (req, res) => {
-  const recipe_id = req.params.id;
-
-  Recipes.getIngredients(recipe_id)
-    .then((ingredients) => {
-      res.status(200).json(ingredients);
-    })
-    .catch((error) => {
-      res.status(404).json({ message: `cannot get ingredients` });
     });
 });
 

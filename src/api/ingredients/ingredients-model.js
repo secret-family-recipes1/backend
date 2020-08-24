@@ -5,10 +5,12 @@ module.exports = {
 };
 
 function getIngredients(id) {
-  return db('ingredients').join(
-    'recipe_ingredients',
-    'ingredients.id',
-    '=',
-    'recipe_ingredients.ingredients_id'
-  );
+  return db('ingredients')
+    .where('recipe_id', '=', id)
+    .join(
+      'recipe_ingredients',
+      'ingredients.id',
+      '=',
+      'recipe_ingredients.ingredients_id'
+    );
 }
