@@ -14,7 +14,9 @@ router.post('/', (req, res) => {
       res.status(200).json(recipe);
     })
     .catch((error) => {
-      res.status(404).json({ message: 'cannot add recipe' });
+      res
+        .status(404)
+        .json({ message: 'cannot add recipe', error: error.message });
     });
 });
 
@@ -63,11 +65,17 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   Recipes.remove(req.params.id)
-    .then((removed) => {
-      res.status(200).json({ message: `recipe removed` });
+    .then((count) => {
+      if (count) {
+        res.status(204).end();
+      } else {
+        res
+          .status(404)
+          .json({ message: 'Could not find a recipe with that id.' });
+      }
     })
-    .catch((error) => {
-      res.status(404).json({ message: `unable to remove recipe` });
+    .catch((err) => {
+      res.status(500).json({ message: 'Failed to delete recipe' });
     });
 });
 

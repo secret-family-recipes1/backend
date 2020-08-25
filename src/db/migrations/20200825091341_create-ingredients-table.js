@@ -7,7 +7,9 @@ exports.up = function (knex) {
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('recipes');
+      .inTable('recipes')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE');
   });
 };
 

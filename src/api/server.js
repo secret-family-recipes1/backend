@@ -6,7 +6,7 @@ const server = express();
 const apiRouter = require('./api-router');
 
 server.use(express.json());
-server.use('/api', cors(), apiRouter);
+server.use('/api', apiRouter);
 server.use(cors());
 
 server.get('/', (req, res) => {
