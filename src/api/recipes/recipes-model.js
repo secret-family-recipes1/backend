@@ -5,6 +5,7 @@ module.exports = {
   get,
   getAll,
   remove,
+  update,
 };
 
 function add(recipe) {
@@ -17,6 +18,10 @@ function get(id) {
 
 function getAll(id) {
   return db('recipes').where('user_id', '=', id);
+}
+
+function update(id, changes) {
+  return db('recipes').where({ id }).update(changes, id);
 }
 
 function remove(id) {

@@ -3,6 +3,11 @@ exports.up = function (knex) {
     t.increments('id');
 
     t.string('ingredient', 255).notNullable();
+    t.integer('recipe_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('recipes');
   });
 };
 
