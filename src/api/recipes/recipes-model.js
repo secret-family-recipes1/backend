@@ -9,7 +9,10 @@ module.exports = {
 };
 
 function add(recipe) {
-  return db('recipes').insert(recipe);
+  return db('recipes')
+    .insert(recipe)
+    .returning('id')
+    .then(([id]) => get(id));
 }
 
 function get(id) {
