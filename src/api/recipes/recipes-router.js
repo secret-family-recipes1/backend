@@ -65,9 +65,24 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   Recipes.remove(req.params.id)
+    .then((removed) => {
+      res.status(200).json({ message: `recipe removed` });
+    })
+    .catch((error) => {
+      res.status(404).json({
+        message: `unable to remove recipe`,
+        error: error.message,
+      });
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  Recipes.remove(req.params.id)
     .then((count) => {
       if (count) {
-        res.status(204).end();
+        res
+          .status(204)
+          .json({ message: 'This recipe has been deleted.' });
       } else {
         res
           .status(404)
