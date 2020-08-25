@@ -28,5 +28,5 @@ function update(id, changes) {
 }
 
 function remove(id) {
-  return db('recipes').where({ id }).del();
+  return db('recipes').where({ id }).delete();
 }
