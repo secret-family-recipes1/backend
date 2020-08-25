@@ -1,4 +1,4 @@
-const router = require('express').Router({ mergeParams: true });
+const router = require('express').Router();
 
 const Recipes = require('./recipes-model');
 const Ingredients = require('./ingredients/ingredients-model');
@@ -96,6 +96,31 @@ router.post('/:id/ingredients', (req, res) => {
   );
 });
 
+// PUT - recipe ingredients
+router.put('/:id/ingredients', (req, res) => {
+  const { id } = req.body;
+  const changes = req.body;
+  console.log(changes, id);
+
+  Ingredients.findByRecipe(id)
+    .then((instruction) => {
+      if (instruction) {
+        Ingredients.update(id, changes).then((updateIngredient) => {
+          res.status(200).json({ data: updateIngredient });
+        });
+      } else {
+        res.status(404)({
+          message: 'There is no ingredient.',
+        });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: 'Failed to update the ingredient.' });
+    });
+});
+
 // GET - recipe's instructions
 router.get('/:id/instructions', (req, res) => {
   const { id } = req.params;
@@ -114,11 +139,43 @@ router.post('/:id/instructions', (req, res) => {
   const { id } = req.params;
   const { instruction, recipe_id } = req.body;
 
-  Instructions.add({ instruction, recipe_id: id }).then(
-    (instructions) => {
+  Instructions.add({ instruction, recipe_id: id })
+    .then((instructions) => {
       res.status(200).json({ data: instructions });
-    }
-  );
+    })
+    .catch((error) => {
+      res.status(404).json({
+        data: `cannot create instructions`,
+        error: error.message,
+      });
+    });
+});
+
+// PUT - recipe instructions
+router.put('/:id/instructions', (req, res) => {
+  const { id } = req.body;
+  const changes = req.body;
+  console.log(changes, id);
+
+  Instructions.findByRecipe(id)
+    .then((instruction) => {
+      if (instruction) {
+        Instructions.update(id, changes).then(
+          (updatedInstruction) => {
+            res.status(200).json({ data: updatedInstruction });
+          }
+        );
+      } else {
+        res.status(404)({
+          message: 'There is no instruction with that ID.',
+        });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: 'Failed to update the instruction.' });
+    });
 });
 
 module.exports = router;

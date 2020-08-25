@@ -51,12 +51,11 @@ ingredient: 'potatos, olive-oil, milk'; // string, required
 recipe_id: '2'; // auto-generated
 ```
 
-| Method     | URL                              | Desciption                                          |
-| ---------- | -------------------------------- | --------------------------------------------------- |
-| **GET**    | /api/recipes/:id/ingredients     | fetch all existing ingredients for specified recipe |
-| **POST**   | /api/recipes/:id/ingredients     | post new ingredients to specified recipe            |
-| **PUT**    | /api/recipes/:id/ingredients/:id | update existing ingredients to specified recipe     |
-| **DELETE** | /api/recipes/:id/ingredients/:id | delete existing ingredients from specified recipe   |
+| Method   | URL                          | Desciption                                          |
+| -------- | ---------------------------- | --------------------------------------------------- |
+| **GET**  | /api/recipes/:id/ingredients | fetch all existing ingredients for specified recipe |
+| **POST** | /api/recipes/:id/ingredients | post new ingredients to specified recipe            |
+| **PUT**  | /api/recipes/:id/ingredients | update existing ingredients to specified recipe     |
 
 ---
 
@@ -70,9 +69,8 @@ instruction: 'set stove heat to 6, make food'; // string, required
 recipe_id: '2'; // auto-generated
 ```
 
-| Method     | URL                               | Desciption                                           |
-| ---------- | --------------------------------- | ---------------------------------------------------- |
-| **GET**    | /api/recipes/:id/instructions     | fetch all existing instructions for specified recipe |
-| **POST**   | /api/recipes/:id/instructions     | post new instructions to specified recipe            |
-| **PUT**    | /api/recipes/:id/instructions/:id | update existing instructions to specified recipe     |
-| **DELETE** | /api/recipes/:id/instructions/:id | delete existing instructions from specified recipe   |
+| Method   | URL                           | Desciption                                           |
+| -------- | ----------------------------- | ---------------------------------------------------- |
+| **GET**  | /api/recipes/:id/instructions | fetch all existing instructions for specified recipe |
+| **POST** | /api/recipes/:id/instructions | post new instructions to specified recipe            |
+| **PUT**  | /api/recipes/:id/instructions | update existing instructions to specified recipe     |
