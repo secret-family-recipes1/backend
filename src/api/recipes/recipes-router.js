@@ -120,29 +120,14 @@ router.post('/:id/ingredients', (req, res) => {
 });
 
 // PUT - recipe ingredients
-router.put('/:id/ingredients', (req, res) => {
-  const { id, ingredient } = req.body;
-  console.log(ingredient, id);
+router.put('/:id/ingredients/:i_id', (req, res) => {
+  const { id, i_id } = req.params;
+  const ingredient = req.body;
+  console.log(instruction, id, i_id);
 
-  Ingredients.findByRecipe(id)
-    .then((instruction) => {
-      if (instruction) {
-        Ingredients.update(id, ingredient).then(
-          (updateIngredient) => {
-            res.status(200).json({ data: updateIngredient });
-          }
-        );
-      } else {
-        res.status(404)({
-          message: 'There is no ingredient.',
-        });
-      }
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .json({ message: 'Failed to update the ingredient.' });
-    });
+  Ingredients.update(i_id, ingredient).then((updatedIngredient) => {
+    res.status(200).json({ data: updatedIngredient });
+  });
 });
 
 // GET - recipe's instructions
