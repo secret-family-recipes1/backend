@@ -176,29 +176,16 @@ router.post('/:id/instructions', (req, res) => {
 });
 
 // PUT - recipe instructions
-router.put('/:id/instructions', (req, res) => {
-  const { id, instruction } = req.body;
-  console.log(instruction, id);
+router.put('/:id/instructions/:i_id', (req, res) => {
+  const { id, i_id } = req.params;
+  const instruction = req.body;
+  console.log(instruction, id, i_id);
 
-  Instructions.findByRecipe(id)
-    .then((instruction) => {
-      if (instruction) {
-        Instructions.update(id, instruction).then(
-          (updatedInstruction) => {
-            res.status(200).json({ data: updatedInstruction });
-          }
-        );
-      } else {
-        res.status(404)({
-          message: 'There is no instruction with that ID.',
-        });
-      }
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .json({ message: 'Failed to update the instruction.' });
-    });
+  Instructions.update(i_id, instruction).then(
+    (updatedInstruction) => {
+      res.status(200).json({ data: updatedInstruction });
+    }
+  );
 });
 
 module.exports = router;
