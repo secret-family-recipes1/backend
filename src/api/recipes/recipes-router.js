@@ -123,7 +123,6 @@ router.post('/:id/ingredients', (req, res) => {
 router.put('/:id/ingredients/:i_id', (req, res) => {
   const { id, i_id } = req.params;
   const ingredient = req.body;
-  console.log(instruction, id, i_id);
 
   Ingredients.update(i_id, ingredient).then((updatedIngredient) => {
     res.status(200).json({ data: updatedIngredient });
@@ -164,13 +163,14 @@ router.post('/:id/instructions', (req, res) => {
 router.put('/:id/instructions/:i_id', (req, res) => {
   const { id, i_id } = req.params;
   const instruction = req.body;
-  console.log(instruction, id, i_id);
 
-  Instructions.update(i_id, instruction).then(
-    (updatedInstruction) => {
-      res.status(200).json({ data: updatedInstruction });
-    }
-  );
+  Instructions.findByRecipe(id).then((recipe) => {
+    Instructions.update(i_id, instruction).then(
+      (updatedInstruction) => {
+        res.status(200).json({ data: updatedInstruction });
+      }
+    );
+  });
 });
 
 module.exports = router;
