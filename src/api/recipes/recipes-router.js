@@ -121,16 +121,17 @@ router.post('/:id/ingredients', (req, res) => {
 
 // PUT - recipe ingredients
 router.put('/:id/ingredients', (req, res) => {
-  const { id } = req.body;
-  const changes = req.body;
-  console.log(changes, id);
+  const { id, ingredient } = req.body;
+  console.log(ingredient, id);
 
   Ingredients.findByRecipe(id)
     .then((instruction) => {
       if (instruction) {
-        Ingredients.update(id, changes).then((updateIngredient) => {
-          res.status(200).json({ data: updateIngredient });
-        });
+        Ingredients.update(id, ingredient).then(
+          (updateIngredient) => {
+            res.status(200).json({ data: updateIngredient });
+          }
+        );
       } else {
         res.status(404)({
           message: 'There is no ingredient.',
@@ -176,14 +177,13 @@ router.post('/:id/instructions', (req, res) => {
 
 // PUT - recipe instructions
 router.put('/:id/instructions', (req, res) => {
-  const { id } = req.body;
-  const changes = req.body;
-  console.log(changes, id);
+  const { id, instruction } = req.body;
+  console.log(instruction, id);
 
   Instructions.findByRecipe(id)
     .then((instruction) => {
       if (instruction) {
-        Instructions.update(id, changes).then(
+        Instructions.update(id, instruction).then(
           (updatedInstruction) => {
             res.status(200).json({ data: updatedInstruction });
           }
